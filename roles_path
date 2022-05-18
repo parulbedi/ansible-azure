@@ -1,0 +1,1 @@
+roles_path = /etc/ansible/roles:/home/ubuntu/ansible-azure/roles
