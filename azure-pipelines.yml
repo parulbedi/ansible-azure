@@ -1,6 +1,6 @@
 # Ansible Azure Pipeline
 trigger:
-- master
+- main
 
 pool:
   name: 'default'
@@ -27,9 +27,9 @@ steps:
     ansible-lint
   displayName: 'Run ansible-lint'
 
-- script: ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu -i ./host_inventory ./playbooks/apache-install.yml --private-key '/home/ubuntu/.ssh/aad_key.pem'
+- script: ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu -i ./host_inventory ./playbooks/apache-install.yml --private-key '/home/ubuntu/.ssh/my__key.pem'
 
-- script: ANSIBLE_HOST_KEY_CHECKING=False export ANSIBLE_ROLES_PATH=./roles && ansible-playbook -u ubuntu -i ./host_inventory ./playbooks/website-update.yml --private-key '/home/ubuntu/.ssh/aad_key.pem'
+- script: ANSIBLE_HOST_KEY_CHECKING=False export ANSIBLE_ROLES_PATH=./roles && ansible-playbook -u ubuntu -i ./host_inventory ./playbooks/website-update.yml --private-key '/home/ubuntu/.ssh/mykey.pem'
 
-- script: ANSIBLE_HOST_KEY_CHECKING=False export ANSIBLE_ROLES_PATH=./roles && ansible-playbook -u ubuntu -i ./host_inventory ./playbooks/website-test.yml --private-key '/home/ubuntu/.ssh/aad_key.pem'
+- script: ANSIBLE_HOST_KEY_CHECKING=False export ANSIBLE_ROLES_PATH=./roles && ansible-playbook -u ubuntu -i ./host_inventory ./playbooks/website-test.yml --private-key '/home/ubuntu/.ssh/my_key.pem'
 
