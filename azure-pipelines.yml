@@ -45,6 +45,11 @@ steps:
    #  sudo ln -s $(pemfile.secureFilePath) ./.ssh
     #  ls -la
 #  displayName: 'Saving .pem file'
+#
+
+- script: |
+     sudo echo "roles_path = /etc/ansible/roles:/home/ubuntu/ansible-azure/roles" >> /etc/ansible/ansible.cfg
+  displayName: "configuring ansible.cfg"
 
 - script: ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu -i ./host_inventory ./playbooks/apache-install.yml --private-key '/home/ubuntu/.ssh/my_key.pem'
   displayName: "installing apache"
