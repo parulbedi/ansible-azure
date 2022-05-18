@@ -35,7 +35,7 @@ steps:
   displayName: 'Downloading .pem file'
 
 - script: |
-      sudo ln -s $(pemfile.secureFilePath) ~/.ssh
+      sudo ln -s $(pemfile.secureFilePath) ./.ssh
       ls -la
   displayName: 'Saving .pem file'
 
