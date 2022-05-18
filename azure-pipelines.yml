@@ -48,7 +48,8 @@ steps:
 #
 
 - script: |
-     sudo echo "roles_path = /etc/ansible/roles:/home/ubuntu/ansible-azure/roles" >> /etc/ansible/ansible.cfg
+     cat >> /etc/ansible/ansible.cfg
+     roles_path = /etc/ansible/roles:/home/ubuntu/ansible-azure/roles
   displayName: "configuring ansible.cfg"
 
 - script: ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu -i ./host_inventory ./playbooks/apache-install.yml --private-key '/home/ubuntu/.ssh/my_key.pem'
