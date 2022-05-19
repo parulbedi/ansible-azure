@@ -64,3 +64,9 @@ steps:
     tarCompression: 'gz' 
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip' 
     replaceExistingArchive: true
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'ansible-artifact'
+    publishLocation: 'pipeline'
