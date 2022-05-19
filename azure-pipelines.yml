@@ -60,6 +60,6 @@ steps:
   inputs:
     rootFolderOrFile: '$(Build.BinariesDirectory)'
     includeRootFolder: true
-    archiveType: 'zip'
+    archiveType: 'tar'
     tarCompression: 'gz'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
