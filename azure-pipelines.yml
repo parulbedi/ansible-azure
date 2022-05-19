@@ -56,10 +56,9 @@ steps:
 - script: ANSIBLE_HOST_KEY_CHECKING=False export ANSIBLE_ROLES_PATH=./roles && ansible-playbook -u ubuntu -i ./host_inventory ./playbooks/website-test.yml --private-key '/home/ubuntu/.ssh/my_key.pem'
   displayName: "running website test"
 
-- task: ArchiveFiles@2
+- task: PublishBuildArtifacts@1
   inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)' 
-    includeRootFolder: true 
-    archiveType: 'zip'
-    tarCompression: 'gz'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'ansible-artifact'
+    publishLocation: 'Container'
+    StoreAsTar: true
