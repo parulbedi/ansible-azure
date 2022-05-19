@@ -65,8 +65,15 @@ steps:
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip' 
     replaceExistingArchive: true
 
-- task: PublishPipelineArtifact@1
+# - task: PublishPipelineArtifact@1
+#   inputs:
+#     targetPath: '$(Pipeline.Workspace)'
+#     artifact: 'ansible-artifact'
+#     publishLocation: 'pipeline'
+
+- task: PublishBuildArtifacts@1
   inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    artifact: 'ansible-artifact'
-    publishLocation: 'pipeline'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'ansible-artifact'
+    publishLocation: 'Container'
+    StoreAsTar: true
