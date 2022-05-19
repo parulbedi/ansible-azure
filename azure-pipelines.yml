@@ -62,3 +62,12 @@ steps:
     includeRootFolder: true
     archiveType: 'tar'
     tarCompression: 'gz'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'ansi-artifact'
+    publishLocation: 'pipeline'
+    #targetPath: '$(Pipeline.Workspace)' # Required 
+    #artifactName: 'drop' # Optional
+    #artifactType: 'pipeline'
