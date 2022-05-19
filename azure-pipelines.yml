@@ -60,5 +60,5 @@ steps:
     rootFolderOrFile: '$(Build.BinariesDirectory)'
     includeRootFolder: false
     archiveType: 'tar'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).tar'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
