@@ -62,4 +62,3 @@ steps:
     includeRootFolder: true
     archiveType: 'tar'
     tarCompression: 'gz'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
