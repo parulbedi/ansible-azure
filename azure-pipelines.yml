@@ -69,12 +69,12 @@ steps:
 #     publishLocation: 'pipeline'
 
 
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-#     ArtifactName: 'ansible-artifact'
-#     publishLocation: 'Container'
-#     StoreAsTar: true
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'ansible-build-artifact'
+    publishLocation: 'Container'
+    StoreAsTar: true
 
 - task: UniversalPackages@0
   displayName: Universal Publish
