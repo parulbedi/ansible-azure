@@ -34,3 +34,29 @@ jobs:
     steps:
     - name: running ansible lint
       run: ansible-lint
+
+  install_apache:
+    needs: run_ansible_lint
+    runs-on: self-hosted
+    steps:
+    - name: installing apache
+      run: |
+        ANSIBLE_HOST_KEY_CHECKING=False 
+        ansible-playbook -u ubuntu -i ${GITHUB_WORKSPACE}/host_inventory ${GITHUB_WORKSPACE}/playbooks/apache-install.yml 
+  website-update:
+    needs: install_apache
+    runs-on: self-hosted
+    steps:
+    - name: website updating
+      run: |
+        ANSIBLE_HOST_KEY_CHECKING=False export ANSIBLE_ROLES_PATH=${GITHUB_WORKSPACE}/roles
+        ansible-playbook -u ubuntu -i ${GITHUB_WORKSPACE}/host_inventory ${GITHUB_WORKSPACE}/playbooks/website-update.yml
+    
+  website-test:
+    needs: website-update
+    runs-on: self-hosted
+    steps:
+    - name: website testing
+      run: |
+        ANSIBLE_HOST_KEY_CHECKING=False export ANSIBLE_ROLES_PATH=${GITHUB_WORKSPACE}/roles
+        ansible-playbook -u ubuntu -i ${GITHUB_WORKSPACE}/host_inventory ${GITHUB_WORKSPACE}/playbooks/website-test.yml
