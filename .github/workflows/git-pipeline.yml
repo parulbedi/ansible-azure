@@ -44,3 +44,4 @@ jobs:
       run: |
         ANSIBLE_HOST_KEY_CHECKING=False
         ansible-playbook -u ubuntu -i ${GITHUB_WORKSPACE}/host_inventory ${GITHUB_WORKSPACE}/playbooks/apache-install.yml --private-key '~/.ssh/vm-instance-key.pem'
+        readlink -f vm-instance-key.pem
