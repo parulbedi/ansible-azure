@@ -5,12 +5,7 @@ jobs:
   my_workflow:
     runs-on: ubuntu-latest
     steps:
-    - run: echo Github Workflows!
-  
-  repo_updated:
-    runs-on: self-hosted
-    steps:
-    - uses: actions/checkout@master
+    - run: echo Github Workflows!`
         
   install_ansible:
     needs: repo_updated
