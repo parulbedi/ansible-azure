@@ -7,3 +7,12 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
+  install_ansible:
+    needs: repo_updated
+    runs-on: self-hosted
+    steps:
+    - name: installing ansible via github actions
+      run: |
+        sudo apt install software-properties-common
+        sudo add-apt-repository --yes --update ppa:ansible/ansible
+        sudo apt install ansible -y
