@@ -1,13 +1,8 @@
 name: Running Workflow
-on:
-  push:
-    branches: [master, main]
+on: push
+
 jobs:
-  repo_updated:
-    runs-on: self-hosted
-    steps:
-    - uses: actions/checkout@master
-        
+
   install_ansible:
     needs: repo_updated
     runs-on: self-hosted
@@ -43,6 +38,7 @@ jobs:
       run: |
         ANSIBLE_HOST_KEY_CHECKING=False 
         ansible-playbook -u ubuntu -i ${GITHUB_WORKSPACE}/host_inventory ${GITHUB_WORKSPACE}/playbooks/apache-install.yml 
+
   website-update:
     needs: install_apache
     runs-on: self-hosted
