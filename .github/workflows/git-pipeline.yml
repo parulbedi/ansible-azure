@@ -1,4 +1,4 @@
-name: Running Workflow
+name: Ansible-GithubActions
 on: push
 
 jobs:
@@ -27,6 +27,14 @@ jobs:
         sudo apt-get update -y
         sudo apt-get install -y ansible-lint
         ansible-lint --version
+
+
+  run_ansible_lint:
+    needs: [install_ansible, install_ansible_lint]
+    runs-on: self-hosted
+    steps:
+    - name: running ansible lint
+      run: ansible-lint
 
 
 
